@@ -90,6 +90,26 @@ public class ApiTests extends TestBase {
         assertEquals(expectedColor, actualColor);
     }
 
+    @Test
+    @DisplayName("REGISTER - SUCCESSFUL")
+    void successfulLoginTest() {
+        String email = "eve.holt@reqres.in";
+        String password = "pistol";
+        String authData = "{\"email\": \""+ email +"\", \"password\": \""+ password + "\"}";
+
+        given()
+                .body(authData)
+                .contentType(JSON)
+                .log().uri()
+                .when()
+                .post("/api/register")
+                .then()
+                .log().status()
+                .log().body()
+                .statusCode(200)
+                .body("token", is("QpwL5tke4Pnpja7X4"));
+    }
+
 
 }
 
