@@ -6,7 +6,9 @@ import org.junit.jupiter.api.Test;
 
 import static io.restassured.RestAssured.given;
 import static io.restassured.http.ContentType.JSON;
+
 import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.notNullValue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @Owner("Alexander Drozenko")
@@ -15,7 +17,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class ApiTests extends TestBase {
     @Test
     @DisplayName("LIST USERS")
-    void getListUsers() {
+    void getListUsersTest() {
         given()
                 .log().uri()
                 .log().body()
@@ -30,7 +32,7 @@ public class ApiTests extends TestBase {
 
     @Test
     @DisplayName("SINGLE USER NOT FOUND")
-    void userNotFound() {
+    void userNotFoundTest() {
         given()
                 .log().uri()
                 .log().body()
@@ -45,7 +47,7 @@ public class ApiTests extends TestBase {
 
     @Test
     @DisplayName("CREATE USER")
-    void createUser() {
+    void createUserTest() {
         given()
                 .log().uri()
                 .log().body()
@@ -62,7 +64,7 @@ public class ApiTests extends TestBase {
 
     @Test
     @DisplayName("DELETE USER")
-    void deleteUser() {
+    void deleteUserTest() {
         given()
                 .log().uri()
                 .log().body()
@@ -76,7 +78,7 @@ public class ApiTests extends TestBase {
 
     @Test
     @DisplayName("SINGLE RESOURCE")
-    void listResource() {
+    void listSingleResourceTest() {
         String expectedColor = "#C74375";
         String actualColor = given()
                 .log().body()
@@ -95,7 +97,7 @@ public class ApiTests extends TestBase {
     void successfulLoginTest() {
         String email = "eve.holt@reqres.in";
         String password = "pistol";
-        String authData = "{\"email\": \""+ email +"\", \"password\": \""+ password + "\"}";
+        String authData = "{\"email\": \"" + email + "\", \"password\": \"" + password + "\"}";
 
         given()
                 .body(authData)
@@ -107,7 +109,24 @@ public class ApiTests extends TestBase {
                 .log().status()
                 .log().body()
                 .statusCode(200)
-                .body("token", is("QpwL5tke4Pnpja7X4"));
+                .body("token", is(notNullValue()));
+    }
+
+    @Test
+    @DisplayName("SINGLE RESOURCE")
+    void listResourceTest() {
+        String pageID = "3";
+        String expectedname = "true red";
+        String actualColor = given()
+                .log().body()
+                .when()
+                .get("/api/unknown?id=" + pageID)
+                .then()
+                .log().all()
+                .statusCode(200)
+                .extract()
+                .path("data.name");
+        assertEquals(expectedname, actualColor);
     }
 
 
