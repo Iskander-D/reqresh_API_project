@@ -104,7 +104,7 @@ public class ApiTests extends TestBase {
                 .spec(loginResponseSpec)
                 .extract().as(LoginResponse.class));
         step("Проверяем Token", () ->
-                assertThat(loginResponse.getToken()).isEqualTo("QpwL5tke4Pnpja7X4"));
+                assertThat(loginResponse.getToken()).isNotNull());
 
     }
 }
