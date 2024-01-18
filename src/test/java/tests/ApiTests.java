@@ -95,7 +95,7 @@ public class ApiTests extends TestBase {
         authData.setEmail("eve.holt@reqres.in");
         authData.setPassword("pistol");
 
-        LoginResponse loginResponse = step("Делаем запрос", () -> given()
+        LoginResponse loginResponse = step("Проходим регистарцию нового пользователяя", () -> given()
                 .spec(requestSpec)
                 .body(authData)
                 .when()
