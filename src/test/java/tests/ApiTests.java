@@ -29,7 +29,7 @@ public class ApiTests extends TestBase {
     @Test
     @DisplayName("LIST USERS")
     void getListUsersTest() {
-        UserDataList list = step("Делаем запрос", () -> given()
+        UserDataList list = step("Делаем запрос списка пользователей", () -> given()
                 .spec(requestSpec)
                 .when()
                 .get("/api/users?page=2")
@@ -43,7 +43,7 @@ public class ApiTests extends TestBase {
     @Test
     @DisplayName("SINGLE USER NOT FOUND")
     void userNotFoundTest() {
-        step("Делаем запрос", () -> given()
+        step("Делаем запрос о пользователе", () -> given()
                 .spec(requestSpec)
                 .when()
                 .get("/api/users/23")
@@ -58,7 +58,7 @@ public class ApiTests extends TestBase {
         CreateUser user = new CreateUser();
         user.setName("morpheus");
         user.setJob("leader");
-        CreateUserResponse userResponse = step("Делаем запрос", () -> given()
+        CreateUserResponse userResponse = step("Делаем запрос на создание пользователя   ", () -> given()
                 .spec(requestSpec)
                 .body(user)
                 .when()
@@ -66,16 +66,16 @@ public class ApiTests extends TestBase {
                 .then()
                 .spec(responseUser)
                 .extract().as(CreateUserResponse.class));
-        step("Проверяем JOB", () ->
+        step("Проверяем параметр JOB у пользователя ", () ->
                 assertThat(userResponse.getJob()).isEqualTo("leader"));
-        step("Проверяем Name", () ->
+        step("Проверяем параметр  Name у пользователя ", () ->
                 assertThat(userResponse.getName()).isEqualTo("morpheus"));
     }
 
     @Test
     @DisplayName("DELETE USER")
     void deleteUserTest() {
-        step("Делаем запрос", () ->
+        step("Делаем запрос на удаление пользователя ", () ->
                 given()
                         .spec(requestSpec)
                         .when()
