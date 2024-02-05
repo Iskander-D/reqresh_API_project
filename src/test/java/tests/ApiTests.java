@@ -1,59 +1,48 @@
 package tests;
 
 import io.qameta.allure.Epic;
-import io.qameta.allure.Feature;
 import io.qameta.allure.Owner;
 import lombok.*;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-
 import static io.qameta.allure.Allure.step;
 import static io.restassured.RestAssured.given;
-
-
 import static org.assertj.core.api.Assertions.assertThat;
-
-import static specs.TestSpec.loginResponseSpec;
-import static specs.TestSpec.requestSpec;
-import static specs.TestSpec.response;
-import static specs.TestSpec.responseDelete;
-import static specs.TestSpec.responseNotFound;
-import static specs.TestSpec.responseUser;
+import static specs.TestSpec.*;
 
 
 @Owner("Alexander Drozenko")
 @Epic("Api test")
-@Feature("USER TESTS")
 public class ApiTests extends TestBase {
     @Test
-    @DisplayName("LIST USERS")
+    @DisplayName("Список пользователей")
     void getListUsersTest() {
         UserDataList list = step("Делаем запрос списка пользователей", () -> given()
                 .spec(requestSpec)
                 .when()
-                .get("/api/users?page=2")
+                .get("/users?page=2")
                 .then()
-                .spec(response)
+                .spec(response200)
                 .extract().as(UserDataList.class));
         step("Проверяем количество страниц", () ->
                 assertThat(list.getTotalPages()).isEqualTo(2));
     }
 
     @Test
-    @DisplayName("SINGLE USER NOT FOUND")
+    @DisplayName("Пользователь не найден")
     void userNotFoundTest() {
         step("Делаем запрос о пользователе", () -> given()
                 .spec(requestSpec)
                 .when()
-                .get("/api/users/23")
+                .get("/users/23")
                 .then()
-                .spec(responseNotFound));
+                .spec(responseNotFound404));
 
     }
 
     @Test
-    @DisplayName("CREATE USER")
+    @DisplayName("Создание пользователя")
     void createUserTest() {
         CreateUser user = new CreateUser();
         user.setName("morpheus");
@@ -62,9 +51,9 @@ public class ApiTests extends TestBase {
                 .spec(requestSpec)
                 .body(user)
                 .when()
-                .post("/api/users")
+                .post("/users")
                 .then()
-                .spec(responseUser)
+                .spec(responseUser201)
                 .extract().as(CreateUserResponse.class));
         step("Проверяем параметр JOB у пользователя ", () ->
                 assertThat(userResponse.getJob()).isEqualTo("leader"));
@@ -73,23 +62,19 @@ public class ApiTests extends TestBase {
     }
 
     @Test
-    @DisplayName("DELETE USER")
+    @DisplayName("Удаление пользователя")
     void deleteUserTest() {
         step("Делаем запрос на удаление пользователя ", () ->
                 given()
                         .spec(requestSpec)
                         .when()
-                        .post("/api/users/2")
+                        .delete("/users/2")
                         .then()
-                        .spec(responseDelete)
-                        .extract()
-                        .response());
-
-
+                        .spec(responseDelete204));
     }
 
     @Test
-    @DisplayName("REGISTER - SUCCESSFUL")
+    @DisplayName("Успешная регистрауия пользователяL")
     void successfulLoginTest() {
         LoginSuccessful authData = new LoginSuccessful();
         authData.setEmail("eve.holt@reqres.in");
@@ -99,14 +84,15 @@ public class ApiTests extends TestBase {
                 .spec(requestSpec)
                 .body(authData)
                 .when()
-                .post("/api/register")
+                .post("/register")
                 .then()
-                .spec(loginResponseSpec)
+                .spec(loginResponseSpec200)
                 .extract().as(LoginResponse.class));
         step("Проверяем Token", () ->
                 assertThat(loginResponse.getToken()).isNotNull());
 
     }
+
 }
 
 

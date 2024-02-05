@@ -15,33 +15,36 @@ import static org.hamcrest.Matchers.notNullValue;
 public class TestSpec {
     public static RequestSpecification requestSpec = with()
             .filter(withCustomTemplates())
+            .basePath("/api")
             .log().uri()
             .log().headers()
             .log().body()
             .contentType(JSON);
-    public static ResponseSpecification responseUser = new ResponseSpecBuilder()
+    public static ResponseSpecification responseUser201 = new ResponseSpecBuilder()
             .expectStatusCode(201)
             .log(LogDetail.BODY)
             .build();
 
-    public static ResponseSpecification response = new ResponseSpecBuilder()
+    public static ResponseSpecification response200 = new ResponseSpecBuilder()
             .expectStatusCode(200)
             .log(LogDetail.BODY)
             .build();
 
-    public static ResponseSpecification responseNotFound = new ResponseSpecBuilder()
+    public static ResponseSpecification responseNotFound404 = new ResponseSpecBuilder()
             .expectStatusCode(404)
             .log(ALL)
             .build();
-    public static ResponseSpecification responseDelete = new ResponseSpecBuilder()
-            .expectStatusCode(201)
+    public static ResponseSpecification responseDelete204 = new ResponseSpecBuilder()
+            .expectStatusCode(204)
             .log(STATUS)
             .build();
 
-    public static ResponseSpecification loginResponseSpec = new ResponseSpecBuilder()
+    public static ResponseSpecification loginResponseSpec200 = new ResponseSpecBuilder()
             .expectStatusCode(200)
             .log(LogDetail.BODY)
             .log(LogDetail.STATUS)
             .expectBody("token",notNullValue())
             .build();
+
+
 }
