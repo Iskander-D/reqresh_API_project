@@ -1,7 +1,7 @@
 # Проект по автоматизации тестирования API для сайта [REQRES.IN](https://reqres.in/)
 
 <p align="center">  
-<img alt="Garage" src="/media/screenshots/OG.jpeg">
+<img alt="Reqres.in" src="/media/screenshots/Reqresin.png">
 
 
 > Reqres моделирует реальные сценарии применения.
@@ -62,23 +62,22 @@ clean test
 ```
 ____
 <a id="jenkins"></a>
-## <img alt="Jenkins" height="25" src="media/logo/Jenkins.svg" width="25"/></a><a name="Сборка"></a>Сборка в [Jenkins](https://jenkins.autotests.cloud/job/garage_UI_project/)</a>
+## <img alt="Jenkins" height="25" src="media/logo/Jenkins.svg" width="25"/></a><a name="Сборка"></a>Сборка в [Jenkins](https://jenkins.autotests.cloud/job/api-reqresh/)</a>
 <p align="center">  
-<a href="https://jenkins.autotests.cloud/job/garage_UI_project/"><img src="media/screenshots/Jenkins.png" alt="Jenkins"/></a>  
+<a href="https://jenkins.autotests.cloud/job/api-reqresh/"><img src="media/screenshots/Jenkins.png" alt="Jenkins"/></a>  
 </p>
 
 <a id="allure"></a>
-## <img src="media/logo/Allure.svg" width="25" height="25"  alt="Allure"/></a> Allure <a target="_blank" href="https://jenkins.autotests.cloud/job/garage_UI_project/allure/">отчёт</a>
+## <img src="media/logo/Allure.svg" width="25" height="25"  alt="Allure"/></a> Allure <a target="_blank" href="https://jenkins.autotests.cloud/job/api-reqresh/allure/">отчёт</a>
 
 ### *Основная страница отчёта*
 
 <p align="center">  
-<img title="Allure Overview Dashboard" src="media/screenshots/AllureRep.png">  
+<img title="Allure Overview Dashboard" src="media/screenshots/AllureR.png">  
 </p>  
 
 <a id="allure-testops"></a>
-## <img src="media/logo/Allure_TO.svg" width="25" height="25"  alt="Allure"/></a>Интеграция с <a target="_blank" href="https://allure.autotests.cloud/project/4020/dashboards">Allure TestOps</a>
-### *Allure TestOps Dashboard*
+## <img src="media/logo/Allure_TO.svg" width="25" height="25"  alt="Allure"/></a>Интеграция с <a target="_blank" href="https://allure.autotests.cloud/project/4026/launches">Allure TestOps</a>
 
 <p align="center">  
 <img title="Allure TestOps Dashboard" src="media/screenshots/AllureTO.png">  
@@ -86,7 +85,7 @@ ____
 
 
 <a id="jira"></a>
-## <img src="media/logo/Jira.svg" width="25" height="25"  alt="Allure"/></a>Интеграция с <a target="_blank" href="https://jira.autotests.cloud/browse/HOMEWORK-1098">Jira</a>
+## <img src="media/logo/Jira.svg" width="25" height="25"  alt="Allure"/></a>Интеграция с <a target="_blank" href="https://jira.autotests.cloud/browse/HOMEWORK-1100">Jira</a>
 
 <p align="center">  
 <img title="Jira" src="media/screenshots/Jira.png">  
@@ -95,3 +94,6 @@ ____
 <a id="telegram"></a>
 ## <img src="media/logo/Telegram.svg" width="25" height="25"  alt="Allure"/></a>Уведомление в Telegram 
 
+<p align="center">  
+<img title="Telegram" src="media/screenshots/Tg.png">  
+</p>  

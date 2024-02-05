@@ -74,7 +74,7 @@ public class ApiTests extends TestBase {
     }
 
     @Test
-    @DisplayName("Успешная регистрауия пользователяL")
+    @DisplayName("Успешная регистрация пользователя")
     void successfulLoginTest() {
         LoginSuccessful authData = new LoginSuccessful();
         authData.setEmail("eve.holt@reqres.in");
