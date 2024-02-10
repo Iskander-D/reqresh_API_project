@@ -26,6 +26,7 @@ ____
 <p align="center">
 <a href="https://www.java.com/"><img width="6%" title="Java" src="media/logo/Java.svg"></a>
 <a href="https://aerokube.com/selenoid/"><img width="6%" title="Selenoid" src="media/logo/Selenoid.svg"></a>
+<a href="https://rest-assured.io/"><img width="6%" title="RestAssured" src="media/logo/restAssured.png"></a>
 <a href="https://github.com/allure-framework/allure2"><img width="6%" title="Allure Report" src="media/logo/Allure.svg"></a>
 <a href="https://qameta.io/"><img width="5%" title="Allure TestOps" src="media/logo/Allure_TO.svg"></a>
 <a href="https://gradle.org/"><img width="6%" title="Gradle" src="media/logo/Gradle.svg"></a>

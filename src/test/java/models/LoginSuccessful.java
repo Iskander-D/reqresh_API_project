@@ -1,4 +1,6 @@
-package lombok;
+package models;
+
+import lombok.Data;
 
 @Data
 public class LoginSuccessful {

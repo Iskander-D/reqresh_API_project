@@ -2,7 +2,7 @@ package tests;
 
 import io.qameta.allure.Epic;
 import io.qameta.allure.Owner;
-import lombok.*;
+import models.*;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -80,7 +80,7 @@ public class ApiTests extends TestBase {
         authData.setEmail("eve.holt@reqres.in");
         authData.setPassword("pistol");
 
-        LoginResponse loginResponse = step("Проходим регистарцию нового пользователяя", () -> given()
+        LoginResponse loginResponse = step("Проходим регистрацию нового пользователя", () -> given()
                 .spec(requestSpec)
                 .body(authData)
                 .when()
@@ -88,7 +88,7 @@ public class ApiTests extends TestBase {
                 .then()
                 .spec(loginResponseSpec200)
                 .extract().as(LoginResponse.class));
-        step("Проверяем Token", () ->
+        step("Проверяем что полученное значение Token не пустое", () ->
                 assertThat(loginResponse.getToken()).isNotNull());
 
     }
