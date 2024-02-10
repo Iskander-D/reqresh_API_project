@@ -14,6 +14,7 @@ import static specs.TestSpec.*;
 
 @Owner("Alexander Drozenko")
 @Epic("Api test")
+@DisplayName("Тестирование API методов")
 public class ApiTests extends TestBase {
     @Test
     @DisplayName("Список пользователей")
