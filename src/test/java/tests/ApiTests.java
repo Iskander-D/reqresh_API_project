@@ -19,21 +19,21 @@ public class ApiTests extends TestBase {
     @Test
     @DisplayName("Список пользователей")
     void getListUsersTest() {
-        UserDataList list = step("Делаем запрос списка пользователей", () -> given()
+        UserDataList list = step("Сделать запрос списка пользователей", () -> given()
                 .spec(requestSpec)
                 .when()
                 .get("/users?page=2")
                 .then()
                 .spec(response200)
                 .extract().as(UserDataList.class));
-        step("Проверяем количество страниц", () ->
+        step("Проверить количество страниц", () ->
                 assertThat(list.getTotalPages()).isEqualTo(2));
     }
 
     @Test
     @DisplayName("Пользователь не найден")
     void userNotFoundTest() {
-        step("Делаем запрос о пользователе", () -> given()
+        step("Сделать запрос о пользователе", () -> given()
                 .spec(requestSpec)
                 .when()
                 .get("/users/23")
@@ -48,7 +48,7 @@ public class ApiTests extends TestBase {
         CreateUser user = new CreateUser();
         user.setName("morpheus");
         user.setJob("leader");
-        CreateUserResponse userResponse = step("Делаем запрос на создание пользователя   ", () -> given()
+        CreateUserResponse userResponse = step("Сделать запрос на создание пользователя   ", () -> given()
                 .spec(requestSpec)
                 .body(user)
                 .when()
@@ -56,16 +56,16 @@ public class ApiTests extends TestBase {
                 .then()
                 .spec(responseUser201)
                 .extract().as(CreateUserResponse.class));
-        step("Проверяем параметр JOB у пользователя ", () ->
+        step("Проверить параметр JOB у пользователя ", () ->
                 assertThat(userResponse.getJob()).isEqualTo("leader"));
-        step("Проверяем параметр  Name у пользователя ", () ->
+        step("Проверитьпараметр  Name у пользователя ", () ->
                 assertThat(userResponse.getName()).isEqualTo("morpheus"));
     }
 
     @Test
     @DisplayName("Удаление пользователя")
     void deleteUserTest() {
-        step("Делаем запрос на удаление пользователя ", () ->
+        step("Сделать запрос на удаление пользователя ", () ->
                 given()
                         .spec(requestSpec)
                         .when()
@@ -81,7 +81,7 @@ public class ApiTests extends TestBase {
         authData.setEmail("eve.holt@reqres.in");
         authData.setPassword("pistol");
 
-        LoginResponse loginResponse = step("Проходим регистрацию нового пользователя", () -> given()
+        LoginResponse loginResponse = step("Пройти регистрацию нового пользователя", () -> given()
                 .spec(requestSpec)
                 .body(authData)
                 .when()
@@ -89,7 +89,7 @@ public class ApiTests extends TestBase {
                 .then()
                 .spec(loginResponseSpec200)
                 .extract().as(LoginResponse.class));
-        step("Проверяем что полученное значение Token не пустое", () ->
+        step("Проверить что полученное значение Token не пустое", () ->
                 assertThat(loginResponse.getToken()).isNotNull());
 
     }
